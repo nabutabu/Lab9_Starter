@@ -69,21 +69,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button id="log">Console Log</button>
+      <button id="error">Console Error</button>
+      <button id="count">Console Count</button>
+      <button id="warn">Console Warn</button>
+      <button id="assert">Console Assert</button>
+      <button id="clear">Console Clear</button>
+      <button id="dir">Console Dir</button>
+      <button id="dirxml">Console dirxml</button>
+      <button id="grpStart">Console Group Start</button>
+      <button id="grpEnd">Console Group End</button>
+      <button id="table">Console Table</button>
+      <button id="startTimer">Start Timer</button>
+      <button id="endTimer">End Timer</button>
+      <button id="trace">Console Trace</button>
+      <button id="globalError">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,6 +102,79 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns.forEach(btn => {
+      btn.addEventListener('click', e => {
+        let output = document.querySelector('output');
+        let btnId = e.target.id;
+        switch (btnId) {
+          case 'log':
+            console.log('This is a log message');
+            break;
+          case 'error':
+            console.error('This is an error message');
+            break;
+          case 'count':
+            console.count('This is a count message');
+            break;
+          case 'warn':
+            console.warn('This is a warn message');
+            break;
+          case 'assert':
+            console.assert(false, 'This is an assert message');
+            break;
+          case 'clear':
+            console.clear();
+            break;
+          case 'dir':
+            console.dir(document.querySelector('#first-num'));
+            break;
+          case 'dirxml':
+            console.dirxml(document.querySelector('#first-num'));
+            break;
+          case 'grpStart':
+            console.group('This is a group start message');
+            console.info('This is the first group message')
+            break;
+          case 'grpEnd':
+            console.groupEnd();
+            break;
+          case 'table':
+            console.table([
+              {
+                name: 'first-num',
+                value: document.querySelector('#first-num').value
+              },
+              {
+                name: 'operator',
+                value: document.querySelector('#operator').value
+              },
+              {
+                name: 'second-num',
+                value: document.querySelector('#second-num').value
+              },
+              {
+                name: 'output',
+                value: output.innerHTML
+              }
+            ]);
+            break;
+          case 'startTimer':
+            console.time('timer');
+            break;
+          case 'endTimer':
+            console.timeEnd('timer');
+            break;
+          case 'trace':
+            console.trace();
+            break;
+          case 'globalError':
+            console.log('This is a log message');
+            console.error('This is an error message');
+            break;
+        }
+      });
+    });
+
   </script>
 </body>
 
