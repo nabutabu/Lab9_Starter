@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "ec1b382df03e4bba82f191d37b957cbf"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                        
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -175,6 +183,20 @@
       });
     });
 
+    try{
+      let firstNum = document.querySelector('#first-num').value;
+      let operator = document.querySelector('#operator').value;
+      let secondNum = document.querySelector('#second-num').value;
+
+      if(!isNaN(firstNum) || !isNaN(secondNum)){
+        throw new Error('Please enter a number');
+      }
+    } catch(e) {
+      console.error(e.message);
+    }
+    finally {
+      console.log('This is a log message from finally');
+    }
   </script>
 </body>
 
